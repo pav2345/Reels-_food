@@ -6,11 +6,16 @@ const foodRoutes = require('./routes/food.routes');
 const foodPartnerRoutes = require('./routes/food-partner.routes');
 const cors = require('cors');
 
-const app = express();
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5174",
+      "https://food-reels-seven.vercel.app"
+    ],
+    credentials: true,
+  })
+);
+
 app.use(cookieParser());
 app.use(express.json());
 
