@@ -6,9 +6,10 @@ const authRoutes = require("./routes/auth.routes");
 const foodRoutes = require("./routes/food.routes");
 const foodPartnerRoutes = require("./routes/food-partner.routes");
 
-const app = express(); // ✅ CREATE APP FIRST
+const app = express(); // 
+const port = process.env.PORT || 3000;
 
-// ✅ CORS (local + production)
+
 app.use(
   cors({
     origin: [
@@ -19,16 +20,15 @@ app.use(
   })
 );
 
-// ✅ Middlewares
+
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Test route
 app.get("/", (req, res) => {
   res.send("FoodReels API is running 🚀");
 });
 
-// ✅ Routes
+
 app.use("/api/auth", authRoutes);
 app.use("/api/food", foodRoutes);
 app.use("/api/food-partner", foodPartnerRoutes);
