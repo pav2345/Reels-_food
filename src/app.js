@@ -8,23 +8,24 @@ const foodPartnerRoutes = require("./routes/food-partner.routes");
 
 const app = express();
 
+/* 🔥 REQUIRED for Render HTTPS cookies */
+app.set("trust proxy", 1);
 
+/* Allowed origins */
 const allowedOrigins = [
   "http://localhost:5174",
+  process.env.FRONTEND_URL   // 👈 Render frontend
 ];
 
-/* CORS */
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow Postman, mobile apps
+      if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
+        callback(null, true);
       } else {
-        return callback(
-          new Error("CORS not allowed from this origin: " + origin)
-        );
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true
