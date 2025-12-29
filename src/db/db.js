@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 
 function connectDB() {
-    mongoose.connect(process.env.MONGODB_URI)
+    mongoose.connect(process.env.MONGO_URI)
     // checking connection status whether mongoDB connected or Not //
         .then(() => {
             console.log("MongoDB connected");
